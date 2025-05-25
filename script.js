@@ -24,7 +24,8 @@ calculateBtn.addEventListener('click', () => {
       resultEl.textContent = `You already have ${currentPerc.toFixed(2)}% attendance, meeting the target of ${target}%.`;
       resultEl.className = 'result success';
     } else {
-      resultEl.textContent = `No remaining classes. Impossible to reach ${target}%. Your attendance is ${currentPerc.toFixed(2)}%.`;
+      resultEl.textContent = `No remaining classes. Impossible to reach ${target}%. Your attendance is ${currentPerc.toFixed(2)}%. 
+Make your condonation Money Ready😑`;
       resultEl.className = 'result fail';
     }
     return;
@@ -32,7 +33,8 @@ calculateBtn.addEventListener('click', () => {
 
   // Check if target is achievable
   if (maxPossiblePerc < target) {
-    resultEl.textContent = `Impossible to reach ${target}%. Maximum achievable is ${maxPossiblePerc.toFixed(2)}%.`;
+    resultEl.textContent = `Impossible to reach ${target}%. Your attendance is ${currentPerc.toFixed(2)}%. 
+Make your condonation Money Ready😑`;
     resultEl.className = 'result fail';
   } else {
     const neededTotal = Math.ceil((target / 100) * totalClasses);
