@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Attendance Estimator</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="container">
+    <h1>Attendance Estimator</h1>
+    <div class="form-group">
+      <label for="attended">Classes Attended</label>
+      <input id="attended" type="number" min="0" placeholder="e.g., 18" />
+    </div>
+    <div class="form-group">
+      <label for="held">Classes Held</label>
+      <input id="held" type="number" min="0" placeholder="e.g., 20" />
+    </div>
+    <div class="form-group">
+      <label for="remaining">Remaining Classes</label>
+      <input id="remaining" type="number" min="0" placeholder="e.g., 10" />
+    </div>
+    <div class="form-group">
+      <label for="target">Target Percentage (%)</label>
+      <input id="target" type="number" min="0" max="100" placeholder="e.g., 75" />
+    </div>
+    <button id="calculate">Estimate</button>
+    <div class="result" id="result"></div>
+  </div>
+
+  <!-- Link external JS -->
+  <script src="script.js"></script>
+</body>
+</html>
