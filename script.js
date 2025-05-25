@@ -8,44 +8,40 @@ calculateBtn.addEventListener('click', () => {
   
   // Validate inputs
   if ([att, held, rem].some(v => isNaN(v)) || isNaN(target) || target < 0 || target > 100) {
-    resultEl.textContent = 'Please fill in all fields correctly (0-100 for target).';
+    resultEl.textContent = 'Whoa, check your inputs! Target must be between 0 and 100.';
     resultEl.className = 'result fail';
     return;
   }
 
-  const totalHeld = held;
   const totalClasses = held + rem;
-  const currentPerc = totalHeld > 0 ? (att / totalHeld) * 100 : 0;
+  const currentPerc = held > 0 ? (att / held) * 100 : 0;
   const maxPossiblePerc = totalClasses > 0 ? ((att + rem) / totalClasses) * 100 : 0;
 
-  // Handle no remaining classes
+  // No remaining classes
   if (rem === 0) {
     if (currentPerc >= target) {
-      resultEl.textContent = `You already have ${currentPerc.toFixed(2)}% attendance, meeting the target of ${target}%.`;
+      resultEl.textContent = `Congrats! You've got ${currentPerc.toFixed(2)}% attendance—target of ${target}% smashed like a boss!`;
       resultEl.className = 'result success';
     } else {
-      resultEl.textContent = `No remaining classes. Impossible to reach ${target}%. Your attendance is ${currentPerc.toFixed(2)}%. 
-Make your condonation Money Ready😑`;
+      resultEl.textContent = `Oops! Only ${currentPerc.toFixed(2)}% attendance. Target was ${target}%. Time to sweet-talk the prof (and your wallet).`;
       resultEl.className = 'result fail';
     }
     return;
   }
 
-  // Check if target is achievable
+  // Check if target reachable
   if (maxPossiblePerc < target) {
-    resultEl.textContent = `Impossible to reach ${target}%. Your attendance is ${currentPerc.toFixed(2)}%. 
-Make your condonation Money Ready😑`;
+    resultEl.textContent = `Dreaming big, huh? Max possible is just ${maxPossiblePerc.toFixed(2)}%—no way you hit ${target}%. Better start funneling funds to that condonation fund.`;
     resultEl.className = 'result fail';
   } else {
-    const neededTotal = Math.ceil((target / 100) * totalClasses);
-    let needInRem = neededTotal - att;
+    const requiredTotal = Math.ceil((target / 100) * totalClasses);
+    const needInRem = requiredTotal - att;
 
-    // Clamp to 0 if negative
     if (needInRem <= 0) {
-      resultEl.textContent = `You already meet the target. Current attendance: ${currentPerc.toFixed(2)}%.`;
+      resultEl.textContent = `Lucky you! You already have ${currentPerc.toFixed(2)}%, above the ${target}% goal. Now go celebrate—after you hit the books, of course.`;
       resultEl.className = 'result success';
     } else {
-      resultEl.textContent = `You need to attend at least ${needInRem} out of ${rem} remaining classes to reach ${target}%.`;
+      resultEl.textContent = `Listen up: attend at least ${needInRem} of the ${rem} remaining classes to hit ${target}%. Miss them and prepare to bribe your way back in.`;
       resultEl.className = 'result success';
     }
   }
